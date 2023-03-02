@@ -55,6 +55,23 @@ class DrinkCard2 extends LitElement {
   transform: scale(1);
   transition: 0.6s;
 }
+
+.button2 {
+  background-color: #2895e8; /* Blue */
+  border: none;
+  color: white;
+  padding: 8px 2vw;
+  text-align: left;
+  text-decoration: none;
+  font-size: 14px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  border-radius: 4px;
+  width: 70%;
+  transform: scale(1);
+  transition: 0.6s;
+}
+
 .button:hover, .button:focus {
   transform: scale(1.05);
   box-shadow: 0px 0px 48px 10px rgba(40,149,232,.7);
@@ -80,16 +97,24 @@ class DrinkCard2 extends LitElement {
   render() {
     return html`
      <div class="controls">
-  <button id="cardnew" class="button">toggle clone card</button>
-  <button id="cardtitle" class="button">change clone title</button>
-  <button id="cardbg" class="button">toggle clone bg color</button>
+  <button class="button">toggle clone card</button>
+  <button class="button">change clone title</button>
+  <button class="button">toggle clone bg color</button>
 </div>
-<div id="cards" class="cards">
-  <div id="card" class="card">
+<div class="cards">
+  <div class="card">
     <img src="https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM=" id="image">
-    <h2 id="title">Placeholder Card</h2>
-    <p id="description">placeholder card description</p>
-    <button id="details" class="button" onclick="toggleDescription()">details</button>
+    <h2 >Drink Prime!</h2>
+    <p >Prime is a sports drink made by Logan Paul</p>
+      <details class="button2">
+        <summary>Nutrition info</summary>
+        <div>
+          <ul>
+            <li>Has 100g of sugar</li>
+            <li>O calories</li>
+          </ul>
+  </div>
+  </details>
   </div>
 </div>
 
