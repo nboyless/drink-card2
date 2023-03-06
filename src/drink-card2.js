@@ -1,14 +1,40 @@
 import { LitElement, html, css } from 'lit';
+import { property, customElement } from 'lit/decorators.js';
 
-const logo = new URL('../assets/open-wc-logo.svg', import.meta.url).href;
 
 class DrinkCard2 extends LitElement {
-  static properties = {
-    header: { type: String },
+  static get properties() {
+    return {
+      drink_background: {
+        type: Boolean,
+        reflect: true
+      },
+      expanded: {
+        type: Boolean,
+        reflect: true
+      },
+
+      title: {
+        type: String,
+        reflect: true
+      },
+
+      subtitle: {
+        type: String, 
+        reflect: true
+      }
+    }
   }
 
   static styles = css`
  @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+
+ :root {
+      --cardbg: "red";
+    }
+    *[drink_background] {
+      background-color: var(--cardbg);
+    }
 
 .controls {
   margin: 16px auto;
@@ -94,29 +120,36 @@ class DrinkCard2 extends LitElement {
     this.header = 'My app';
   }
 
+  
+  background() {
+    if (this.drink_background) {
+      this.drink_background = false;
+      this.expanded = false;
+      }
+      else {
+      this.drink_background = true;
+      this.expanded = true;
+      }
+  }
+
   render() {
     return html`
-     <div class="controls">
-  <button class="button">toggle clone card</button>
-  <button class="button">change clone title</button>
-  <button class="button">toggle clone bg color</button>
-</div>
-<div class="cards">
+    
   <div class="card">
-    <img src="https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM=" id="image">
+    <img src="https://i5.walmartimages.com/asr/bb451fb5-04ed-4a3a-8a0c-692959107d58.6a5e1a0769e1d0f8b37313849efceaf5.png?odnHeight=612&odnWidth=612&odnBg=FFFFFF"/>
     <h2 >Drink Prime!</h2>
-    <p >Prime is a sports drink made by Logan Paul</p>
-      <details class="button2">
+    <p >Prime is a sports drink</p>
+      <details class="button2" @toggle=${this.background}>
         <summary>Nutrition info</summary>
         <div>
           <ul>
-            <li>Has 100g of sugar</li>
-            <li>O calories</li>
+          <slot name="calories"><li>0 calories</li></slot>
+          <slot name="sugar"><li>25g of sugar</li></slot>
+          <slot name="flavor"><li>Fruit Punch</li></slot>
           </ul>
   </div>
   </details>
   </div>
-</div>
 
     `;
   }
